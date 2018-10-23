@@ -1,0 +1,64 @@
+SQL – Structured Query Language
+
+
+DATA TYPES – written in capital letters
+
+INTEGER – positive or negative whole number
+TEXT – text string, introduced as ‘text_string’ or “text_string”
+TIME – formatted as HH:MM:SS
+DATE – formatted as YYYY-MM-DD
+TIMESTAMP – formatted as YYYY-MM-DD HH:MM:SS
+REAL – decimal value
+NULL - nothing
+
+
+OPERATORS
+
+= equal to
+!= not equal to, equivalent to <>
+> greater than
+< less than
+>= greater than or equal to
+<= less than or equal to
+AND – combines two or more conditions, all conditions must be TRUE to return TRUE.
+OR – combines two or more conditions, only one condition need to be TRUE to return TRUE.
+LIKE – can be used with WHERE clause to search for a specific pattern in a column, is not case sensitive (WHERE column_name LIKE ‘St_r’), can take regular expressions.
+BETWEEN – can be used with WHERE to filer a result set within a certain range, values can be numbers, text or dates (WHERE column_name BETWEEN starting_range #included, starting with text_string# AND ending_range #not included if it’s a string, value starting with text_string#).
+
+
+WILDCARDS
+
+_ can be substitute by any single character without breaking the pattern
+% character that matches zero or more missing letter in the pattern 
+Use example in a query (select statement):
+WHERE column_name LIKE ‘%pattern_to_be_searched%’  -- isn’t case sensitive!
+% can be either at the beginning of the string, at the end, or both
+
+
+CONCEPTS
+
+CRUD – Create Read Update Delete transactions.
+Database (aka Schema) – The container for all the data that you store, in SQLite, the entire data is stored in a single file, in MySQL, it’s stored in a server (can be local).
+Database dictionary – provides a comprehensive list of the structure and types of data in the database.
+Relational Database – database, organizes information into one or more tables. The data records are unordered, like sets theory.
+Table – collection of data organized into rows and columns (sometimes referred to as “relations”).
+Field (aka column) – set of data values of a specific type.
+Record (aka row) – single entry of data in a table.
+Statement – text recognized as a valid command, always end in semi-colon (;).
+Clause – perform specific task, written in capital letters (also referred to as “commands”).
+Parameter – list of columns, data types or values that are passed to a clause as an argument.
+Result Set – new table returned by SELECT statements.
+NULL – special value that represents missing or unknown data.
+Wildcard – special character that can be substitute, used for searching patterns.
+Aggregate functions – compute a single result from a set of input values (sum, count, average…).
+Primary key – serves as a unique identifier for each record (row) in a given table, is literally an id. By assigning a primary key, SQL makes sure that none of the values in the column are NULL and that each value is unique. A table cannot have more than one primary key column.
+    CREATE TABLE table_name(column_name data_type PRIMARY KEY); -- Are not null by default, when inserting new records, primary key will be inserted automatically if not specified
+Foreign key – column that contains the primary key of another table in the database, unlike primary keys, foreign keys do not need to be unique and can be NULL.
+Composite key – using two parameters to specify the key.
+	PRIMARY KEY (parameter1, parameter2)
+Joins – used to combine rows from two or more different tables.
+Aliases – to rename a column or table using an alias, it will appear only in the result set.
+    SELECT column_name AS ‘alias’ FROM table_name;
+Subqueries – used to transform table data by nesting one query within another query (also referred to as inner queries or nested queries).
+View – is a virtual table, it’s used to store queries. Once created can be treated as a table.
+

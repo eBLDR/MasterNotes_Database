@@ -1,0 +1,110 @@
+CLAUSES
+
+*All keywords are written in uppercase only by convention, works fine both ways
+-- Creating new schema with certain encoding
+CREATE DATABASE database_name CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+CREATE – CREATES NEW TABLE FROM SCRATCH
+CREATE TABLE table_name (column_1 data_type, column_2 data_type);
+CREATE TABLE table_name (column_1 data_type, column_2 data_type NOT NULL);
+-- not null means that we cannot leave the record in blank when inserting
+CREATE TABLE IF NOT EXISTS . . .  -- will create only if the table doesn’t exists yet
+
+ALTER TABLE – SPECIFIED CHANGES TO THE TABLE
+ALTER TABLE table_name ADD COLUMN column_name data_type;
+ALTER TABLE table_name ADD COLUMN column_name data_type DEFAULT default_value;
+-- default will fill the field with default_value if it’s not specified when inserting the record
+ALTER TABLE table_name ADD COLUMN column_name data_type AFTER existing_column_name;
+ALTER TABLE table_name RENAME TO new_table_name;
+
+INSERT – INSERTS NEW ROWS INTO A TABLE
+-- curious thing, the data introduced don’t need to match in type the field when we first created the table (but is strongly advised to do so)
+INSERT INTO table_name (column_1, column_2)
+VALUES (value_in_column_1, value_in_column_2);  -- specifying all the fields, if we don’t specify a field, it will be filled with the default None (NULL)
+INSERT INTO table_name VALUES (value_in_column_1, value_in_column_2);  -- without specifying, values must be in order and match the number of fields
+
+UPDATE – EDITS DATA (ROW) FROM AN EXISTING RECORDS
+-- UPDATE is dangerous, use backup always before updating
+UPDATE table_name SET column_2 = new_value;  -- this is going to update ALL the data in that field for all the records (DANGEROUS)
+UPDATE table_name SET column_2 = new_value WHERE column_1 = conditional_value;
+-- program finds for value = conditional_value in column_1 and changes, when positive match, column_2 to new_value on that specific row
+
+SELECT - FETCH AND PRINT DATA FROM DATABASE, QUERY DATA
+SELECT * FROM table_name;  -- view all
+SELECT column_1, column_2 FROM table_name;  -- view specific/s column
+SELECT * FROM table_name WHERE column_name -operator condition_value;
+
+SELECT DISTINCT – RETURNS UNIQUE VALUES IN THE SPECIFIED COLUMN/S
+SELECT DISTINCT column_name FROM table_name;
+Can be applied to functions:
+SELECT count(DISTINCT column_name) FROM table_name;
+
+ORDER BY – SORTS THE RESULT SET BY A SPECIFIC COLUMN EITHER ALPHABETICALLY OR NUMERICALLY
+SELECT * FROM table_name ORDER BY column_name -keyword;
+-keyword can be DESC (sort results high to low or Z-A) or ASC (low to high or A-Z), case sensitive
+If we don’t want it case sensitive, add COLLATE NOCASE after column_name
+
+GROUP BY – USED ONLY WITH AGGREGATE FUNCTIONS, IS USED IN COLLABORATION WITH SELECT STATEMENT TO ARRANGE IDENTICAL DATA INTO GROUPS
+GROUP BY column_name;
+
+LIMIT – ALLOWS TO SPECIFY THE MAXIMUM NUMBER OF ROWS THE RESULT SET WILL HAVE
+LIMIT value;
+
+DELETE – DELETES ONE OR MORE ROWS FROM A TABLE
+DELETE FROM table_name;  -- deletes all the records
+DELETE FROM table_name WHERE column_name -operator value;
+DELETE FROM table_name WHERE column_name IS NULL;
+--IS NULL returns TRUE when the value is NULL and FALSE otherwise
+
+CREATE VIEW – USED TO CREATE A NEW VIEW
+CREATE VIEW view_name AS SELECT . . .  -- specify next the query
+
+DROP TABLE – deletes the table (and the data!)
+DROP TABLE table_name;
+
+DROP VIEW – deletes the view (not the data!)
+DROP VIEW view_name;
+
+
+AGGREGATE FUNCTIONS
+
+COUNT () – CALCULATES THE NUMBER OF ROWS WHERE COLUMN (ARGUMENT) IS NOT NULL
+SELECT COUNT(column_name) FROM table_name;
+WHERE column_name -operator condition_value;  -- condition can be added
+
+SUM() – RETURNS THE SUM OF ALL THE VALUES IN THE COLUMN (ARGUMENT)
+SELECT SUM(column_that_contains_values) FROM table_name;
+GROUP BY column_name; --adding the values into groups
+
+MAX () – RETURNS THE LARGEST VALUE IN THAT COLUMN
+SELECT column_name, MAX(column_that_contains_values) FROM table_name;
+
+MIN () – RETURNS THE SMALLES VALUE IN THAT COLUMN
+SELECT column_name, MIN(column_that_contains_values) FROM table_name;
+
+AVG() – RETURNS THE AVERAGE VALUE FOR THAT COLUMN
+SELECT AVG(column_that_contains_values) FROM table_name;
+
+ROUND (column_name, INTEGER) – ROUNDS THE VALUES IN THE COLUMN TO THE NUMBER OF DECIMAL PLACES SPECIFIED BY THE INTEGER
+
+
+JOINS
+
+CROSS JOIN – TO QUERY MULTIPLE TABLES WITH ONE SELECT STATEMENT
+SELECT table_1.column_1, table_1.column_2, table_2.column_1 FROM table_1, table_2;
+
+INNER JOIN – WILL COMBINE ROWS FROM DIFFERENT TABLES IF THE JOIN CONDITION IS TRUE
+-- It’s possible to have multiple joins in the same statement
+SELECT * FROM table_1 INNER JOIN table_2 ON table_1.column_name = table_2.column_name;
+			--join type	 --join condition
+
+LEFT OUTER JOIN – WILL COMBINE ROWS FROM TWO OR MORE TABLES EVEN IF THE CONDITION IS NOT MET, IN THIS CASE, NULL VALUES ARE USED TO FILL THE COLUMNS FRON THE RIGHT TABLE
+
+
+SUBQUERIES
+
+NON-CORRELATED – SUBQUERY THAT CAN BE RUN INDEPENDENTLY OF THE OUTER QUERY, CAN BE USED ON A MULTI-STEP TRANSFORMATION
+SELECT * FROM table_1 WHERE column_in_table_1 in (
+SELECT column_in_table_2 FROM table_2 WHERE column_name -operator conditional_value);
+
+CORRELATED – SUBQUERY THAT CANNOT BE RUN INDEPENDENTLY OF THE OUTER QUERY, THE ORDER IS IMPORTANT, ROW IS PROCESSED AND THEN THE SUBQUERY IS EXECUTED FOR THAT PARTICULAR ROW

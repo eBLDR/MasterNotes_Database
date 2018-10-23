@@ -1,0 +1,34 @@
+SQL - Structure Query Language
+
+The model is of a relational nature.
+Data is stored in tables.
+Suitable for solutions where every record is of the same kind and possesses the same properties.
+Adding a new property means you have to alter the whole schema.
+The schema is very strict.
+ACID transactions are supported.
+Scales well vertically.
+
+Popular DBs:
+
+SQLite3, MySQL, Oracle, PostgreSQL
+
+
+NoSQL - No Structure Query Language
+
+The model is non-relational.
+May be stored as JSON, key-value, etc. (depending on type of NoSQL database).
+Not every record has to be of the same nature, making it very flexible.
+Add new properties to data without disturbing anything.
+No schema requirements to adhere to.
+Support for ACID transactions can vary depending on which NoSQL DB is used.
+Consistency can vary.
+Scales well horizontally.
+
+Popular DBs by type:
+
+Key-Value Store: DynamoDB
+Document Store: CouchDB, MongoDB, RethinkDB
+Column Store: Cassandra
+Data-Structures: Redis
+Graph Store: Polyglot
+
