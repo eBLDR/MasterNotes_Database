@@ -1,6 +1,7 @@
 CLAUSES
 
 *All keywords are written in uppercase only by convention, works fine both ways
+
 -- Creating new schema with certain encoding
 CREATE DATABASE database_name CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 

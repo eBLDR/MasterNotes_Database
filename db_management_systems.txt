@@ -1,0 +1,16 @@
+SQL
+SQLite3
+It is not a client-server engine, rather it is
+self-contained, embedded into the end program,
+storing the data in a single disk file.
+It is fast and lightweight.
+
+MySQL
+It is client-server based, running on a server.
+
+NO-SQL
+
+MongoDB
+It works on a server.
+A cross-platform document-oriented database program.
+It uses JSON-like document with schema.
