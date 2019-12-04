@@ -7,6 +7,7 @@ It is fast and lightweight.
 
 MySQL
 It is client-server based, running on a server.
+Default server port: 3306
 
 NO-SQL
 
@@ -14,3 +15,4 @@ MongoDB
 It works on a server.
 A cross-platform document-oriented database program.
 It uses JSON-like document with schema.
+Default server port: 27017
