@@ -1,0 +1,4 @@
+It is not a client-server engine, rather it is
+self-contained, embedded into the end program,
+storing the data in a single disk file.
+It is fast and lightweight.

@@ -1,0 +1,6 @@
+Default server port: 27017
+
+It works on a server.
+A cross-platform document-oriented database program.
+It uses JSON-like document with schema.
+

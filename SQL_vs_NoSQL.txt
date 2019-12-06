@@ -31,4 +31,3 @@ Document Store: CouchDB, MongoDB, RethinkDB
 Column Store: Cassandra
 Data-Structures: Redis
 Graph Store: Polyglot
-

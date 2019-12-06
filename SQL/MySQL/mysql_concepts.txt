@@ -1,0 +1,3 @@
+Default server port: 3306
+
+It is client-server based, running on a server.

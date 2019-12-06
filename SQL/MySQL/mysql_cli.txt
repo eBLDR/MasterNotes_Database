@@ -1,0 +1,28 @@
+Spawn a shell:
+$ mysql -u <username> -p <database>
+
+Commands start with ‘.’.
+
+Exits the program:
+.quit / .exit
+
+Opens or creates the database:
+.open <db_name>
+
+Shows a list with all the tables in the .db:
+.tables
+
+A list of all the that that have been created (tables, views...):
+.schema
+
+A list of all the creations and data insertions that have been input:
+.dump
+
+Activates the headers when printing the queried data:
+.headers on
+
+Creates a backup file with all the data:
+.backup <file_name>
+
+Restores the data from the backup file:
+.restore <file_name>
