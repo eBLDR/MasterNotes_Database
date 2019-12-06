@@ -1,13 +1,88 @@
-[Redis must be running]
+[Redis server must be running]
+
+In general, the command's starting letter indicates the data type which
+operates.
 
 To spawn a shell:
-$ redis-cli [-h <host>]
+$ redis-cli [-h <host>] [-p <port>] [-a <password>] [-n <db_number>]
+-n the DB's number, each being independent.
 
 Check server:
->>> ping [message]
+>>> PING [message]
+
+Display server info:
+>>> INFO
+
+Flush database:
+>>> FLUSHDB
+
+Exit:
+>>> QUIT
+
+Set the value of the config variable:
+>>> CONFIG SET <variable_name>
 
 Get the value of the config variable:
 >>> CONFIG GET <variable_name>
 
-Set the value of the config variable:
->>> CONFIG SET <variable_name>
+Use `M` to SET/GET Multiple items.
+Set new key-value pair:
+>>> [M]SET <key> <value> [<key> <value>...]
+
+Get existing key's value:
+>>> [M]GET <key> [<key>...]
+
+Check if key exists:
+>>> EXISTS <key>
+Returns 1 if it does, 0 otherwise.
+
+Delete existing key-value pair:
+>>> DEL <key>
+Returns 1 or 0 depending on whether the key existed (removed) or not
+
+Set expiry time - it will vanish (delete) on due time:
+>>> EXPIRE <key> <seconds>
+
+Remove the expiry time:
+>>> PERSIST <key>
+
+Check time left fo expiry:
+>>> TTL <key>
+
+Alter an integer value:
+>>> INCR key
+INCR to increase by 1.
+DECR to decrease by 1.
+INCRBY to increase by n.
+DECRBY to decrease by n.
+
+Set new hash:
+>>> H[M]SET <key> <field> <value> [<field> <value> ...]
+
+Get single field of existing hash value:
+>>> H[M]GET <key> <field> [<field> ...]
+
+Get all fields of existing hash value:
+>>> HGETALL <key>
+
+Set new set:
+>>> SADD <key> <value_1> ... <value_n>
+
+Get set's members:
+>>> SMEMBERS <key>
+
+Check membership:
+>>> SISMEMBER <key> <value>
+Returns 1 if it does, 0 otherwise.
+
+Adding new element to list's head (left)
+>>> LPUSH <key> <value_1> ... <value_n>
+RPUSH to add new element to list's tail (right)
+
+Extract elements from list:
+>>> LRANGE <key> <start> <stop>
+Use start=0 stop=-1 to query all.
+
+Popping an element from list's head (left)
+>>> LPOP <key>
+RPOP to pop an element from list's tail (right)

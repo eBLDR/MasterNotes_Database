@@ -3,15 +3,35 @@ Default running port: 6379
 Run in Docker:
 $ docker run -p 6379:6379 redis[:<tag>]
 
-
+Redis (REmote DIctionary Service) has a client-server architecture and uses a
+request-response model. The client connects to a Redis server through TCP
+connection.
 Redis is an advanced key-value store. It is often referred to as a data
 structure server, since the keys can contain strings, hashes, lists, sets
 and sorted sets.
-Redis is exceptionally fast, its operations are atomic, supports rich data
-types, and it's a multi-utility tool (cache, Pub/Sub, messaging-queue, web
-sessions...)
+Redis is exceptionally fast, its operations are atomic (even if multiple
+clients access the same key there won't be conflict), supports rich data types,
+and it's a multi-utility tool (cache, Pub/Sub, messaging-queue, web
+sessions...).
 
+Redis has three main peculiarities that sets it apart:
+    - Holds its database entirely in the memory, using the disk only for
+    persistence.
+    - Has a relatively rich set of data types when compared to many key-value
+    data stores.
+    - Can replicate data to any number of slaves.
+
+Redis keys are always strings.
+Basic data types for values:
+    - Strings.
+    - Hashes: a mapping of string:string, called field-value pairs, that sits
+    under one top-level key. Represents objects.
+    - Lists.
+    - Sets (unordered).
+    - Sorted Sets.
+
+`nil` is Redis' `null`.
 
 redis.conf
-    Configuration file at Redis root directory. It is possible to Get and Set
+    Configuration file at Redis root directory. It is possible to GET and SET
     all configurations from cli (CONFIG command).
