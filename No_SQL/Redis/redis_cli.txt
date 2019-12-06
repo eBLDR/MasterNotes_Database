@@ -1,0 +1,13 @@
+[Redis must be running]
+
+To spawn a shell:
+$ redis-cli [-h <host>]
+
+Check server:
+>>> ping [message]
+
+Get the value of the config variable:
+>>> CONFIG GET <variable_name>
+
+Set the value of the config variable:
+>>> CONFIG SET <variable_name>

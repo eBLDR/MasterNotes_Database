@@ -1,4 +1,4 @@
-Default server port: 27017
+Default running port: 27017
 
 It works on a server.
 A cross-platform document-oriented database program.

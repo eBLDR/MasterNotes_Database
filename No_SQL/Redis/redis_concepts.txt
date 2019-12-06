@@ -1,0 +1,17 @@
+Default running port: 6379
+
+Run in Docker:
+$ docker run -p 6379:6379 redis[:<tag>]
+
+
+Redis is an advanced key-value store. It is often referred to as a data
+structure server, since the keys can contain strings, hashes, lists, sets
+and sorted sets.
+Redis is exceptionally fast, its operations are atomic, supports rich data
+types, and it's a multi-utility tool (cache, Pub/Sub, messaging-queue, web
+sessions...)
+
+
+redis.conf
+    Configuration file at Redis root directory. It is possible to Get and Set
+    all configurations from cli (CONFIG command).
