@@ -32,6 +32,28 @@ Basic data types for values:
 
 `nil` is Redis' `null`.
 
+Pipeline
+Is designed to perform mass insertion. Normally, each operation
+necessitates a back-and-forth round trip to the server. With a pipeline, all
+the commands are buffered on the client side and then sent at once. So only
+one round trip is made.
+
+Transaction
+A transaction block defines a set of operations that have to be run atomically.
+Meaning that either all should be completed successfully or neither should be.
+
+Optimistic locking using Check-and-Set (CAS)
+Keys can be monitored in order to detect changes against them. If at least one
+watched key is modified before the transaction is executed, the whole
+transaction aborts. This is useful to avoid race conditions by multiple
+clients.
+
+Snapshotting
+Redis database is held in memory (RAM), however, it can also be persisted to
+disk in a process called snapshotting. A RDB snapshot is a full point-in-time
+capture of the database.
+
 redis.conf
     Configuration file at Redis root directory. It is possible to GET and SET
     all configurations from cli (CONFIG command).
+    By default saved on /etc/redis/6379.conf

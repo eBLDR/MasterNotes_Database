@@ -7,6 +7,9 @@ To spawn a shell:
 $ redis-cli [-h <host>] [-p <port>] [-a <password>] [-n <db_number>]
 -n the DB's number, each being independent.
 
+To use pipeline for mass insertion:
+$ cat <source_file.txt> | redis-cli --pipe
+
 Check server:
 >>> PING [message]
 
@@ -16,8 +19,15 @@ Display server info:
 Flush database:
 >>> FLUSHDB
 
+Take snapshot (persists DB) (see redis.conf for binary file settings):
+>>> SAVE
+Or BGSAVE for saving in background.
+
 Exit:
 >>> QUIT
+
+Reference existing variables in shell:
+>>> $<variable>
 
 Set the value of the config variable:
 >>> CONFIG SET <variable_name>
@@ -40,14 +50,19 @@ Delete existing key-value pair:
 >>> DEL <key>
 Returns 1 or 0 depending on whether the key existed (removed) or not
 
-Set expiry time - it will vanish (delete) on due time:
+Set expiry time in seconds from current server timestamp - it will vanish
+(delete) on due time:
 >>> EXPIRE <key> <seconds>
 
 Remove the expiry time:
 >>> PERSIST <key>
 
-Check time left fo expiry:
+Set a new key with expiry time
+>>> SETEX <key> <seconds> <value>
+
+Check time left fo expiry (Time-To-Live):
 >>> TTL <key>
+Returns -1 if there is no expiry time.
 
 Alter an integer value:
 >>> INCR key
@@ -86,3 +101,22 @@ Use start=0 stop=-1 to query all.
 Popping an element from list's head (left)
 >>> LPOP <key>
 RPOP to pop an element from list's tail (right)
+
+Starting a transaction block:
+>>> MULTI
+All subsequence operations will be queued in buffer, until...
+
+Executing a transaction block:
+>>> EXEC
+
+Discarding the transaction block - queue is all flushed out:
+>>> DISCARD
+
+Watching a key for optimistic locking:
+>>> WATCH <key>
+Start a MULTI block and define operations.
+The key will be watched until EXEC is called.
+
+Unwatch a key prior to EXEC:
+>>> UNWATCH [<key>]
+If no key is passed, all keys will be flushed.
