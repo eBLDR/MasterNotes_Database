@@ -1,6 +1,26 @@
 Default running port: 27017
 
-It works on a server.
-A cross-platform document-oriented database program.
-It uses JSON-like document with schema.
+Run in Docker:
+$ docker run -p 27017:27017 [-v ~/localmongodata:/data/db] mongo[:<tag>]
+Add the volume if we need data to be persisted even when container is down.
 
+MongoDB is a document-oriented NoSQL database used for high volume data storage.
+Instead of using tables and rows as in the traditional relational databases,
+MongoDB makes use of collections and documents. Documents consist of key-value
+pairs which are the basic unit of data in MongoDB. Collections contain sets of
+documents and function which is the equivalent of relational database tables.
+It works on a server, and uses JSON-like document with schema.
+An operation on a single document is atomic.
+
+Key Components:
+    - _id: This is a field required in every MongoDB document. The _id field
+    represents a unique value in the MongoDB document. The _id field is like
+    the document's primary key.
+    - Collection: a grouping of MongoDB documents, existing within a single db.
+    - Cursor: a pointer to the result set of a query.
+    - Database: a container for collections like in RDMS wherein it is a
+    container for tables. Each server can store multiple databases.
+    - Document: a record in a MongoDB collection is basically called a document.
+    The document, in turn, will consist of field name and values. Each document
+    can have different fields than other documents in the same collection.
+    - Field: a name-value pair in a document. A document has zero or more fields.

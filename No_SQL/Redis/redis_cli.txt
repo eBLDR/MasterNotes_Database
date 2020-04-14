@@ -1,5 +1,3 @@
-[Redis server must be running]
-
 In general, the command's starting letter indicates the data type which
 operates.
 
