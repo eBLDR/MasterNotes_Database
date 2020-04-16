@@ -15,7 +15,7 @@ An operation on a single document is atomic.
 Key Components:
     - _id: This is a field required in every MongoDB document. The _id field
     represents a unique value in the MongoDB document. The _id field is like
-    the document's primary key.
+    the document's primary key. Its type is ObjectId.
     - Collection: a grouping of MongoDB documents, existing within a single db.
     - Cursor: a pointer to the result set of a query.
     - Database: a container for collections like in RDMS wherein it is a
